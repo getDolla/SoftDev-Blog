@@ -1,5 +1,5 @@
 # Proj 0: Blog
-## Team HardDevs: Ely Sandine, Celine Yan, Kevin Zhang, and Yikai Wang
+#### Team HardDevs: Ely Sandine, Celine Yan, Kevin Zhang, and Yikai Wang
 
 Update on DESIGN.pdf:
 

@@ -2,10 +2,11 @@ from flask import Flask, session, request, url_for, redirect, render_template
 from utils import authenticate, dbEditor
 
 app = Flask(__name__)
+app.secret_key = "Celine Yan for President"
 
 @app.route("/")
 def root():
-    if( session.hasKey( 'username' ) ):
+    if( 'username' in session.keys() ):
         return redirect(url_for( 'home' ))
     else:
         return redirect(url_for( 'login' ))
@@ -15,13 +16,13 @@ def login( **keyword_parameters ):
     message = ""
     if( 'message' in keyword_parameters):
         message = keyword_parameters['message']
-    elif( 'message' in request.form ):
-        message = request.form.pop('message')
-    return render_template('login.html', message)
+    elif( 'message' in request.args ):
+        message = request.args.get('message')
+    return render_template('login.html', message = message)
 
 @app.route("/authenticate/", methods = ["POST"] )
 def authen():
-    dbData = authenticate.dbHandler( authenticate.accessDB () )
+    dbData = authenticate.dbHandler( )
     userNames = dbData['usernames']
     passWords = dbData['passwords']
     if request.form['account'] == 'Login':

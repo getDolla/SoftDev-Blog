@@ -19,7 +19,7 @@ def login( **keyword_parameters ):
         message = request.form.pop('message')
     return render_template('login.html', message)
 
-@app.route("/authenticate/", methods = "POST" )
+@app.route("/authenticate/", methods = ["POST"] )
 def authen():
     dbData = authenticate.dbHandler( authenticate.accessDB () )
     userNames = dbData['usernames']

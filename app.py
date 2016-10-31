@@ -1,4 +1,4 @@
-from flask import Flask, session, request, url_for, redirect
+from flask import Flask, session, request, url_for, redirect, render_template
 from utils import authenticate, dbEditor
 
 app = Flask(__name__)
@@ -6,14 +6,44 @@ app = Flask(__name__)
 @app.route("/")
 def root():
     if( session.hasKey( 'username' ) ):
-        #do something
+        return redirect(url_for( 'home' ))
     else:
-        redirect(url_for( 'login' ))
+        return redirect(url_for( 'login' ))
 
 @app.route("/login/")
-def login():
-    render_template('login.html')
+def login( **keyword_parameters ):
+    message = ""
+    if( 'message' in keyword_parameters):
+        message = keyword_parameters['message']
+    elif( 'message' in request.form ):
+        message = request.form.pop('message')
+    return render_template('login.html', message)
 
+@app.route("/authenticate/", methods = "POST" )
+def authen():
+    dbData = authenticate.dbHandler( authenticate.accessDB () )
+    userNames = dbData['usernames']
+    passWords = dbData['passwords']
+    if request.form['account'] == 'Login':
+        val = authenticate.authenticate(request.form, userNames, passWords )
+        if val == True :
+            session['username'] = request.form['user']
+            return redirect(url_for('root'))
+        else:
+            return redirect(url_for('login', message = val))
+    elif request.form['account'] == 'Register':
+        val = authenticate.register(request.form, userNames, passWords)
+        if val:
+            return redirect(url_for('login', message = "Registration Successful"))
+        else:
+            return redirect(url_for('login', message = "Registration Unsuccessful"))
+    else:
+        return redirect(url_for( 'root' ) )
+
+@app.route("/home/")
+def home():
+    return render_template("homepage.html")
+    
 if __name__ == "__main__":
     app.debug = True
     app.run()

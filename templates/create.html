@@ -7,13 +7,22 @@
     text-align: center; 
     }
   </style>
+  <script type="text/javascript">
+    function countWords() {
+    s = document.getElementById( "story" ).value;
+    s = document.getElementById("inputString").value;
+    s = s.replace(/(^\s*)|(\s*$)/gi,"");
+    s = s.replace(/[ ]{2,}/gi," ");
+    s = s.replace(/\n /,"\n");
+    if( 5 > s.split(' ').length) ;
+    }
   </head>
   <body>
     <form action="homepage.html" method="post" id="story">
       Title:
       <input type="text" name="title">
       <br><br>
-      <textarea rows="4" cols="50" name="story" form="story">Enter your story here...</textarea>
+      <textarea rows="4" cols="50" name="story" form="story" id="story">Enter your story here...</textarea>
       <br><br>
       <input type = "submit" value = "Submit">
     </form>

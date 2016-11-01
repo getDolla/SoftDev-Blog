@@ -44,7 +44,17 @@ def authen():
 @app.route("/home/")
 def home():
     return render_template("homepage.html")
-    
+
+@app.route("/add/")
+def add():
+    return render_template("add.html")
+
+@app.route("/create/")
+def create():
+    return render_template("create.html")
+
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

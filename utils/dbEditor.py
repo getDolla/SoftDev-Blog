@@ -14,7 +14,7 @@ def insertID(story_ids, newstory):
 def touchStory(user, story):
     db = sqlite3.connect("../data/database.db")
     c = db.cursor()
-    q = "SELECT story_ids FROM users WHERE username=%s"(user)
+    q = "SELECT story_ids FROM users WHERE username=%s"%(user)
     stories=c.execute(q)
     print stories
 

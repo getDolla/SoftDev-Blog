@@ -1,0 +1,38 @@
+/*
+Burrowed from Yikai Wang's dope website at http://www.thoughtpool.org/users/1013061/WD2/index.html
+*/
+
+body {
+    font-family: Arial;
+    text-align: center;
+    position: relative;
+}
+
+section {
+    width: 377px;
+    min-height: 60px;
+}
+
+/***************************************************
+		Form Details
+***************************************************/	
+form {
+    line-height:normal;
+    margin:0 5px 12px 0; 
+}
+
+form textarea { 
+	background-color:#F2F3F4
+}
+
+form p { clear:both; }
+
+form input { 
+	padding: 5px 10px;
+	background-color:#F2F3F4; 
+	border: 1px solid #CCCCCC;
+}
+
+form input[type="radio"]:not(:first-of-type) {
+	margin-left: 26px;
+}

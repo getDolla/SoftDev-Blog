@@ -24,7 +24,7 @@ def insertID(story_ids, newstory):
 #    int story_id - the story id to add
 #Returns True
 def touchStory(user, story_id):
-    db = sqlite3.connect("../data/database.db")
+    db = sqlite3.connect("data/database.db")
     c = db.cursor()
     #Gets old story id list and adds to it
     q = "SELECT story_ids FROM users WHERE username='%s'"%(user)
@@ -46,7 +46,7 @@ def touchStory(user, story_id):
 #    note the story id is generated using the current time and random
 #Returns True
 def createStory(user, title, submission):
-    db = sqlite3.connect("../data/database.db")
+    db = sqlite3.connect("data/database.db")
     c = db.cursor()
     random.seed(time.time())
     story_id=random.randint(0,int(time.time()))
@@ -65,7 +65,7 @@ def createStory(user, title, submission):
 #    string text - the text added to the story
 #Returns True
 def addStory(user, story_id, text):
-    db = sqlite3.connect("../data/database.db")
+    db = sqlite3.connect("data/database.db")
     c = db.cursor()
     #Gets old story and adds new story
     q = "SELECT story FROM stories WHERE id=%d"%(story_id)
@@ -86,7 +86,7 @@ def addStory(user, story_id, text):
 #    string user - username who is accessing a story
 #Returns story_id
 def randomStoryId(user):
-    db = sqlite3.connect("../data/database.db")
+    db = sqlite3.connect("data/database.db")
     c = db.cursor()
     q="SELECT story_ids FROM users WHERE username = '%s'"%(user)
     records = c.execute(q)
@@ -116,7 +116,7 @@ def randomStoryId(user):
 #    string user - username who is accessing a story
 #Returns story_id, last_submission
 def randomStory(user):
-    db = sqlite3.connect("../data/database.db")
+    db = sqlite3.connect("data/database.db")
     c = db.cursor()
     id = randomStoryId(user)
     q = "SELECT last_submission FROM stories WHERE id = %d"%(id)
@@ -134,7 +134,8 @@ def randomStory(user):
 #    string user - username who is accessing a story
 #Returns list of story texts
 def allStories(user):
-    db = sqlite3.connect("../data/database.db")
+    #Gets all story ids
+    db = sqlite3.connect("data/database.db")
     c = db.cursor()
     q="SELECT story_ids FROM users WHERE username = '%s'"%(user)
     records = c.execute(q)
@@ -150,6 +151,7 @@ def allStories(user):
         q+=" OR id = %d"%(int(story_ids[i]))
         i+=1;
     records = c.execute(q)
+    #Uses an insertion sort to sort by recency
     list=[]
     times=[]
     i;

@@ -19,6 +19,7 @@
       </script>
   </head>
   <body>
+      {% block content %}
     <form action="homepage.html" method="post" id="newBlog">
       Title:
       <input type="text" name="title">
@@ -27,5 +28,6 @@
       <br><br>
       <input type="submit" value = "Submit" id="submit" onclick="return countWords()">
     </form>
+      {% endblock %}
   </body>
 </html>

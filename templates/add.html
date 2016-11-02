@@ -1,7 +1,13 @@
 {% extends "create.html" %}
 
 {% block content %}
-    {% for story in story_list %}
-        
-    {% endfor }
+    <form action="homepage.html" method="post" id="updateBlog">
+      <h2>{{ title }}</h2>
+      <br><br>
+        <section>{{ story }}</section> 
+     <br><br>
+      <textarea rows="4" cols="50" name="story" form="updateBlog" id="story">Add to the story here...</textarea>
+      <br><br>
+      <input type="submit" value = "Submit" id="submit" onclick="return countWords()">
+    </form>
 {% endblock %}

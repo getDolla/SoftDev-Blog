@@ -92,7 +92,7 @@ def randomStoryId(user):
     records = c.execute(q)
     temp=""
     for record in records:
-        temp = record[0]
+        temp = str(record[0])
     story_ids=temp.split(",")
     q="SELECT id FROM stories"
     if(len(story_ids)>0):

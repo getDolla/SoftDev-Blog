@@ -46,15 +46,15 @@ def home():
 
 @app.route("/add/")
 def add():
-    L = db.Editor.randomStory(session['username']);
+    L = dbEditor.randomStory(session['username']);
     return render_template("add.html", storyID = L[0], story = L[1], title = L[2])
 
 @app.route("/addInput/", methods = ["POST"])
 def addInput():
-    dbEditor.addStory(session['username'], request.form['storyID'], request.form['story'])
+    dbEditor.addStory(session['username'], int(request.form['storyID']), request.form['story'])
     return redirect(url_for( 'home' ) );
     
-@app.route("/createInput/")
+@app.route("/createInput/", methods = ["POST"])
 def createInput():
     dbEditor.createStory(session['username'], request.form['title'], request.form['story']);
     return redirect(url_for( 'home' ) );

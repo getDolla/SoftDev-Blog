@@ -30,14 +30,13 @@ def touchStory(user, story_id):
     q = "SELECT story_ids FROM users WHERE username='%s'"%(user)
     storyids = c.execute(q)
     for record in storyids:
-        newstoryid = record[0] # Woohoo dynamic typing
+        newstoryid = str(record[0]) # Woohoo dynamic typing
     newstoryid=insertID(newstoryid, story_id)
     #updates record
     q = "UPDATE users SET story_ids = '%s' WHERE username = '%s'"%(newstoryid,user)
     c.execute(q)
     db.commit()
     db.close()
-
 #createStory(user, title, submission)
 #creates a new story record in stories
 #Params:
@@ -81,5 +80,101 @@ def addStory(user, story_id, text):
     db.close()
     touchStory(user, story_id)
 
+#randomStoryId(user)
+#Returns a random story_id that the user has not touched
+#Params:
+#    string user - username who is accessing a story
+#Returns story_id
+def randomStoryId(user):
+    db = sqlite3.connect("../data/database.db")
+    c = db.cursor()
+    q="SELECT story_ids FROM users WHERE username = '%s'"%(user)
+    records = c.execute(q)
+    temp=""
+    for record in records:
+        temp = record[0]
+    story_ids=temp.split(",")
+    q="SELECT id FROM stories"
+    if(len(story_ids)>0):
+        q+=" WHERE id != %d"%(int(story_ids[0]))
+    i = 1
+    while i<len(story_ids):
+        q+=" AND id != %d"%(int(story_ids[i]))
+        i+=1;
+    records = c.execute(q)
+    list=[]
+    for record in records:
+        list.append(record[0])
+    db.commit()
+    db.close()
+    random.seed(time.time())
+    return list[random.randint(0,len(list)-1)]
+
+#randomStory(user)
+#Returns a random story that the user has not touched
+#Params:
+#    string user - username who is accessing a story
+#Returns story_id, last_submission
+def randomStory(user):
+    db = sqlite3.connect("../data/database.db")
+    c = db.cursor()
+    id = randomStoryId(user)
+    q = "SELECT last_submission FROM stories WHERE id = %d"%(id)
+    records = c.execute(q)
+    for record in records:
+        last_submission = record[0]
+    db.commit()
+    db.close()
+    return id, last_submission
+
+
+#allStories(user)
+#Returns all of the stories that a user has contributed to in chronological order
+#Params:
+#    string user - username who is accessing a story
+#Returns list of story texts
+def allStories(user):
+    db = sqlite3.connect("../data/database.db")
+    c = db.cursor()
+    q="SELECT story_ids FROM users WHERE username = '%s'"%(user)
+    records = c.execute(q)
+    temp=""
+    for record in records:
+        temp = record[0]
+    story_ids=temp.split(",")
+    q="SELECT story, time FROM stories"
+    if(len(story_ids)>0):
+        q+=" WHERE id = %d"%(int(story_ids[0]))
+    i = 1
+    while i<len(story_ids):
+        q+=" OR id = %d"%(int(story_ids[i]))
+        i+=1;
+    records = c.execute(q)
+    list=[]
+    times=[]
+    i;
+    for record in records:
+        list.append("")
+        times.append(0)
+        i=0
+        time = record[1]
+        while i<len(list) and time<times[i]:
+            i+=1
+        ii=len(list)-1
+        while ii>i:
+            list[ii]=list[ii-1]
+            times[ii]=times[ii-1]
+            ii-=1;
+        list[i]=record[0]
+        times[i]=time
+    db.commit()
+    db.close()
+    return list
+
 if __name__=='__main__':
-    addStory("dota", 0, "This is a test of stories")
+    createStory("test3","title3","text3")
+    createStory("test3","title4","text4")
+    createStory("test4","title5","text5")
+    createStory("test4","title6","text6")
+    addStory("test3",randomStoryId("test3")," additional text")
+    print(allStories("test3"))

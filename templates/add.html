@@ -1,13 +1,14 @@
 {% extends "create.html" %}
 
 {% block content %}
-    <form action="homepage.html" method="post" id="updateBlog">
+    <form action="/addInput/" method="post" id="updateBlog">
       <h2>{{ title }}</h2>
       <br><br>
         <section>{{ story }}</section> 
      <br><br>
       <textarea rows="4" cols="50" name="story" form="updateBlog" id="story">Add to the story here...</textarea>
       <br><br>
-      <input type="submit" value = "Submit" id="submit" onclick="return countWords()">
+      <input type="submit" value="Submit" id="submit" onclick="return countWords()">
+      <input type="hidden" name="storyID" value={{storyID}}>
     </form>
 {% endblock %}

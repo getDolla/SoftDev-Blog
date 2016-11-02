@@ -119,13 +119,14 @@ def randomStory(user):
     db = sqlite3.connect("data/database.db")
     c = db.cursor()
     id = randomStoryId(user)
-    q = "SELECT last_submission FROM stories WHERE id = %d"%(id)
+    q = "SELECT last_submission, title FROM stories WHERE id = %d"%(id)
     records = c.execute(q)
     for record in records:
         last_submission = record[0]
+        title = record[1]
     db.commit()
     db.close()
-    return id, last_submission
+    return id, last_submission, title
 
 
 #allStories(user)

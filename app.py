@@ -1,6 +1,5 @@
 from flask import Flask, session, request, url_for, redirect, render_template
 from utils import authenticate, dbEditor
-
 app = Flask(__name__)
 app.secret_key = "Celine Yan for President"
 
@@ -47,7 +46,18 @@ def home():
 
 @app.route("/add/")
 def add():
-    return render_template("add.html")
+    L = db.Editor.randomStory(session['username']);
+    return render_template("add.html", storyID = L[0], story = L[1], title = L[2])
+
+@app.route("/addInput/", methods = ["POST"])
+def addInput():
+    dbEditor.addStory(session['username'], request.form['storyID'], request.form['story'])
+    return redirect(url_for( 'home' ) );
+    
+@app.route("/createInput/")
+def createInput():
+    dbEditor.createStory(session['username'], request.form['title'], request.form['story']);
+    return redirect(url_for( 'home' ) );
 
 @app.route("/create/")
 def create():

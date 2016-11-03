@@ -95,7 +95,7 @@ def randomStoryId(user):
         temp = str(record[0])
     story_ids=temp.split(",")
     q="SELECT id FROM stories"
-    if((len(story_ids)>0)&&story_ids[0]!=''):
+    if((len(story_ids)>0) and story_ids[0]!=''):
         q+=" WHERE id != %d"%(int(story_ids[0]))
     i = 1
     while i<len(story_ids):

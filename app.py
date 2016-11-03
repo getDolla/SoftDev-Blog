@@ -42,7 +42,7 @@ def authen():
 
 @app.route("/home/")
 def home():
-    content = dbEditor.allStories(session['username'])
+    #content = dbEditor.allStories(session['username'])
     return render_template("homepage.html")
 
 @app.route("/add/")

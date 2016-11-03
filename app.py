@@ -63,7 +63,10 @@ def createInput():
 def create():
     return render_template("create.html")
 
-
+@app.route("/logout/")
+def logout():
+    session.pop('username')
+    return redirect(url_for('root'))
 
 if __name__ == "__main__":
     app.debug = True

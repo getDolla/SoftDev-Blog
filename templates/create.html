@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-   <link rel="stylesheet" type="text/css" href="style.css">
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     <script type="text/javascript">
         function countWords() {
         s = document.getElementById( "story" ).value;
@@ -14,6 +14,7 @@
       </script>
   </head>
   <body>
+    <br>
       {% block content %}
     <form action="/createInput/" method="post" id="newBlog">
       Title:

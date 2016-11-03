@@ -173,5 +173,3 @@ def allStories(user):
     db.commit()
     db.close()
     return list
-
-if __name__=='__main__':

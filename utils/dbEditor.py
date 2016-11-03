@@ -95,7 +95,7 @@ def randomStoryId(user):
         temp = str(record[0])
     story_ids=temp.split(",")
     q="SELECT id FROM stories"
-    if(len(story_ids)>0):
+    if((len(story_ids)>0)&&story_ids[0]!=''):
         q+=" WHERE id != %d"%(int(story_ids[0]))
     i = 1
     while i<len(story_ids):
@@ -175,11 +175,3 @@ def allStories(user):
     return list
 
 if __name__=='__main__':
-    #createStory("test3","title3","text3")
-    #createStory("test3","title4","text4")
-
-    #createStory("test4","title5","text5")
-    #createStory("test4","title6","text6")
-    #addStory("test3",randomStoryId("test3")," additional text")
-    # print(allStories("test3"))
-    print("Hello")

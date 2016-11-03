@@ -175,9 +175,11 @@ def allStories(user):
     return list
 
 if __name__=='__main__':
-    createStory("test3","title3","text3")
-    createStory("test3","title4","text4")
-    createStory("test4","title5","text5")
-    createStory("test4","title6","text6")
-    addStory("test3",randomStoryId("test3")," additional text")
-    print(allStories("test3"))
+    #createStory("test3","title3","text3")
+    #createStory("test3","title4","text4")
+
+    #createStory("test4","title5","text5")
+    #createStory("test4","title6","text6")
+    #addStory("test3",randomStoryId("test3")," additional text")
+    # print(allStories("test3"))
+    print("Hello")

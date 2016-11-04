@@ -50,7 +50,7 @@ def createStory(user, title, submission):
     c = db.cursor()
     random.seed(time.time())
     story_id=random.randint(0,int(time.time()))
-    q = "INSERT INTO stories VALUES (%d, '%s', %f, '%s', '%s')"%(story_id, title,time.time(),submission, submission)
+    q = "INSERT INTO stories VALUES (%d, '%s', %f, '%s', '%s')"%(story_id, title,time.time(),submission, "<h1>"+title+"</h1>\n\n"+submission)
     c.execute(q)
     db.commit()
     db.close()

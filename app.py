@@ -42,8 +42,8 @@ def authen():
 
 @app.route("/home/")
 def home():
-    #content = dbEditor.allStories(session['username'])
-    return render_template("homepage.html")
+    content = dbEditor.allStories(session['username'])
+    return render_template("homepage.html", content = content)
 
 @app.route("/add/")
 def add():

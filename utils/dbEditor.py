@@ -173,3 +173,18 @@ def allStories(user):
     db.commit()
     db.close()
     return list
+
+def newDatabase():
+    db = sqlite3.connect("../data/database.db")
+    c = db.cursor()
+    q = "CREATE TABLE users (username TEXT, password TEXT, story_ids TEXT)"
+    c.execute(q)
+    q =	"CREATE TABLE stories (id INTEGER, title TEXT, time REAL, last_submission TEXT, story TEXT)"
+    c.execute(q)
+    db.commit()
+    db.close()
+
+
+if __name__ == '__main__':
+    newDatabase()
+        

@@ -144,6 +144,8 @@ def allStories(user):
     temp=""
     for record in records:
         temp = record[0]
+    if( temp == ''):
+        return []
     story_ids=temp.split(",")
     q="SELECT story, time FROM stories"
     if(len(story_ids)>0):

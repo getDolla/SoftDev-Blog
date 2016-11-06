@@ -28,8 +28,14 @@
       TITLE <br>
       insert story here <br> <br>
       {% for story in content %}
+      loopTimes = 0 
       {{story[1]}} <br>
-      {{story[0]}}
+        {% while story[0] != 0 %}
+          {{story[1+loopTimes]}}
+          story[0] -= 1
+          loopTimes += 1
+        {% endwhile %}
+      {% endfor %}
       <br>
       <br>
       {% endfor %} 

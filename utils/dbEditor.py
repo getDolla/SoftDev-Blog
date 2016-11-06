@@ -17,6 +17,37 @@ def insertID(story_ids, newstory):
     retstr=retstr[0:-1]
     return retstr
 
+#insertSubmission(story, submission)
+#Params:
+#    string story - the list of submissions
+#    string submission - the submission to add to the story
+#Returns the new list
+def insertSubmission(story, submission):
+    l = story.split(",")
+    l.append(submission)
+    retstr=""
+    for story in l:
+        if(len(story)>0):
+            retstr+=story
+            retstr+=","
+    retstr=retstr[0:-1]
+    return retstr
+
+#toList(story, title)
+# takes a story, and a title and returns a list with the length of the story, title, and all the submissions
+#Params:
+#    string story - the list of stories
+#    string title - title
+#returns list [len of list, title, subs....]
+def toList(story, title):
+    subs = story.split(",")
+    retList= []
+    retList.append(len(subs)+2)
+    retList.append(title)
+    for sub in subs:
+        retList.append(sub)
+    return retList
+
 #touchStory(user, story_id)
 #adds a story id to the list of stories the user has edited
 #Params:
@@ -75,7 +106,7 @@ def addStory(user, story_id, text):
     stories = c.execute(q)
     for record in stories:
         story = record[0]
-    story+=text
+    story=insertSubmission(story, text)
     #updates record
     q = "UPDATE stories SET time = %f, last_submission = '%s', story = '%s' WHERE id = %d"%(time.time(), text, story, story_id)
     c.execute(q)
@@ -162,7 +193,7 @@ def allStories(user):
     times=[]
     i;
     for record in records:
-        list.append(["",""])
+        list.append([])
         times.append(0)
         i=0
         time = record[1]
@@ -173,8 +204,7 @@ def allStories(user):
             list[ii]=list[ii-1]
             times[ii]=times[ii-1]
             ii-=1;
-        list[i][0]=record[0]
-        list[i][1]=record[2]
+        list[i]=toList(record[0],record[2])
         times[i]=time
     db.commit()
     db.close()

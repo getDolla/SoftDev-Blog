@@ -1,3 +1,4 @@
 rm ../data/database.db
-python dbEditor.py
+touch ../data/database.db
+python reset.py
 echo "Database reset"

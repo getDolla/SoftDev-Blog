@@ -10,11 +10,6 @@ def newDatabase():
     names = ['ely','celine','kevin','yikai']
     i = 0
     while(i<4):
-        q = "INSERT INTO users VALUES ('%s','%s','%s')"%(names[i],names[i],str(i))
-        c.execute(q)
-        i+=1
-    i=0
-    while(i<4):
         title = names[i]+"s story"
         submission = names[i] + " went for a walk in the park"
         q = "INSERT INTO stories VALUES (%d, '%s', %f, '%s', '%s')"%(i, title,time.time(),submission, submission)

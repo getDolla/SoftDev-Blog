@@ -174,7 +174,7 @@ def allStories(user):
             times[ii]=times[ii-1]
             ii-=1;
         list[i][0]=record[0]
-        list[i][1]=record[1]
+        list[i][1]=record[2]
         times[i]=time
     db.commit()
     db.close()

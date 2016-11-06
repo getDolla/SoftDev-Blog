@@ -5,7 +5,7 @@ def newDatabase():
     c = db.cursor()
     q = "CREATE TABLE users (username TEXT, password TEXT, story_ids TEXT)"
     c.execute(q)
-    q = "CREATE TABLE stories (id INTEGER, title TEXT, time REAL, last_submisson TEXT, story TEXT)"
+    q = "CREATE TABLE stories (id INTEGER, title TEXT, time REAL, last_submission TEXT, story TEXT)"
     c.execute(q)
     names = ['ely','celine','kevin','yikai']
     i = 0

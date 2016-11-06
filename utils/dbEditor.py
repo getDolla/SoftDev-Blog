@@ -29,6 +29,7 @@ def touchStory(user, story_id):
     #Gets old story id list and adds to it
     q = "SELECT story_ids FROM users WHERE username='%s'"%(user)
     storyids = c.execute(q)
+    newstoryid=""
     for record in storyids:
         newstoryid = str(record[0]) # Woohoo dynamic typing
     newstoryid=insertID(newstoryid, story_id)

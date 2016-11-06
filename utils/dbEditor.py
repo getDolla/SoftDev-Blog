@@ -34,16 +34,13 @@ def insertSubmission(story, submission):
     return retstr
 
 #toList(story, title)
-# takes a story, and a title and returns a list with the length of the story, title, and all the submissions
+# takes a story, and returns a list of submissions
 #Params:
 #    string story - the list of stories
-#    string title - title
-#returns list [len of list, title, subs....]
-def toList(story, title):
+#returns list of subs
+def toList(story):
     subs = story.split(",")
     retList= []
-    retList.append(len(subs)+2)
-    retList.append(title)
     for sub in subs:
         retList.append(sub)
     return retList
@@ -204,7 +201,8 @@ def allStories(user):
             list[ii]=list[ii-1]
             times[ii]=times[ii-1]
             ii-=1;
-        list[i]=toList(record[0],record[2])
+        list[i][0]=[record[2]]
+        list[i][1]=toList(record[0])
         times[i]=time
     db.commit()
     db.close()

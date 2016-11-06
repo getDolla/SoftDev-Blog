@@ -42,8 +42,15 @@ def authen():
 
 @app.route("/home/")
 def home():
-    content = dbEditor.allStories(session['username'])
-    return render_template("homepage.html", content = content)
+    if dbEditor.allStories(session['username']) == []:
+        message = "Looks like you didn't add to any stories yet!"
+        message2 = "Get started by clicking the Add Story or Create Story button!"
+        content = dbEditor.allStories(session['username'])
+    else:
+        message = "Here are the stories you've contributed to:"
+        message2 = ""
+        content = dbEditor.allStories(session['username'])
+    return render_template("homepage.html", user = session['username'], message = message, message2 = message2, content = content)
 
 @app.route("/add/")
 def add():

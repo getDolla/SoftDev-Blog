@@ -52,7 +52,7 @@ def createStory(user, title, submission):
     random.seed(time.time())
     story_id=random.randint(0,int(time.time()))
 
-    q = "INSERT INTO stories VALUES (%d, '%s', %f, '%s', '%s')"%(story_id, title,time.time(),submission, "<h1>"+title+"</h1><br><br>"+submission)
+    q = "INSERT INTO stories VALUES (%d, '%s', %f, '%s', '%s')"%(story_id, title,time.time(),submission, submission)
 
     c.execute(q)
     db.commit()
@@ -149,7 +149,7 @@ def allStories(user):
     if( temp == ''):
         return []
     story_ids=temp.split(",")
-    q="SELECT story, time FROM stories"
+    q="SELECT story, time, title FROM stories"
     if(len(story_ids)>0):
         q+=" WHERE id = %d"%(int(story_ids[0]))
     i = 1
@@ -162,7 +162,7 @@ def allStories(user):
     times=[]
     i;
     for record in records:
-        list.append("")
+        list.append(["",""])
         times.append(0)
         i=0
         time = record[1]
@@ -173,23 +173,10 @@ def allStories(user):
             list[ii]=list[ii-1]
             times[ii]=times[ii-1]
             ii-=1;
-        list[i]=record[0]
+        list[i][0]=record[0]
+        list[i][1]=record[1]
         times[i]=time
     db.commit()
     db.close()
     return list
-
-def newDatabase():
-    db = sqlite3.connect("../data/database.db")
-    c = db.cursor()
-    q = "CREATE TABLE users (username TEXT, password TEXT, story_ids TEXT)"
-    c.execute(q)
-    q =	"CREATE TABLE stories (id INTEGER, title TEXT, time REAL, last_submission TEXT, story TEXT)"
-    c.execute(q)
-    db.commit()
-    db.close()
-
-
-if __name__ == '__main__':
-    newDatabase()
         

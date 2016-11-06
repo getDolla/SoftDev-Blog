@@ -206,5 +206,6 @@ def allStories(user):
         times[i]=time
     db.commit()
     db.close()
+    print list
     return list
         

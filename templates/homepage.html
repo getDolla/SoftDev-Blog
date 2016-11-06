@@ -25,10 +25,8 @@
     <center><h3> {{message}} <br> {{message2}} </h3></center> 
     <br>
     <center>
-      TITLE <br>
-      insert story here <br> <br>
       {% for story in content %}
-      {{story[0][0]}} <br>
+      <h3>{{story[0][0]}} </h3> 
         {% for contribution in story[1] %}
         {{contribution}} <br>
         {% endfor %}

@@ -17,7 +17,7 @@ def newDatabase():
     while(i<4):
         title = names[i]+"s story"
         submission = names[i] + " went for a walk in the park"
-        q = "INSERT INTO stories VALUES (%d, '%s', %f, '%s', '%s')"%(i, title,time.time(),submission, "<h1>"+title+"</h1><br><br>"+submission)
+        q = "INSERT INTO stories VALUES (%d, '%s', %f, '%s', '%s')"%(i, title,time.time(),submission, submission)
         c.execute(q)
         i+=1
     db.commit()

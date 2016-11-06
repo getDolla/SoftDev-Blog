@@ -1,9 +1,12 @@
 <!doctype html>
 <html>
-
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
   <head>
     <title>Homepage</title>
-    
+  </head>
+  
+  <body>
+<header>
     <form action="/create/">
       <input type="submit" value="New Story"/>
     </form>
@@ -16,15 +19,11 @@
       <input type="submit" value="Logout"/>
     </form>
     
-
-    <center><h1>Welcome to your homepage, {{user}}!</h1></center>
+      </header>
+    <h1>Welcome to your homepage, {{user}}!</h1>
     
-  </head>
-  
-  <body>
-    <center><h3> {{message}} <br> {{message2}} </h3></center> 
+    <h3> {{message}} <br> {{message2}} </h3>
     <br>
-    <center>
       TITLE <br>
       insert story here <br> <br>
       {% for story in content %}
@@ -36,7 +35,6 @@
       <br>
       {% endfor %} 
 
-    </center>
   </body>
   
   

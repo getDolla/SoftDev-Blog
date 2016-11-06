@@ -190,7 +190,7 @@ def allStories(user):
     times=[]
     i;
     for record in records:
-        list.append([])
+        list.append(["",[]])
         times.append(0)
         i=0
         time = record[1]

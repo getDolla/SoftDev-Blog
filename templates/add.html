@@ -1,3 +1,9 @@
+	<br><br>
+
+	<form action="/add/">
+      <input type="submit" value="Get a New Story!"/>
+    </form>
+
 {% extends "create.html" %}
 
 {% block content %}
@@ -11,3 +17,12 @@
       <input type="hidden" name="storyID" value={{storyID}}>
     </form>
 {% endblock %}
+
+	<form action="/home/">
+      <input type="submit" value="Back to Home"/>
+    </form>
+
+    <br>
+    <br>
+
+    Note: You will not be able to contribute to a story you've created or you've added to. 

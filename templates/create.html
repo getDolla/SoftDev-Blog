@@ -15,6 +15,8 @@
   </head>
   <body>
     <br>
+    <h1> Create a new Story! </h1>
+    <br>
       {% block content %}
     <form action="/createInput/" method="post" id="newBlog">
       Title:
@@ -25,5 +27,14 @@
       <input type="submit" value="Submit" id="submit" onclick="return countWords()">
     </form>
       {% endblock %}
+
+      <form action="/home/">
+      <input type="submit" value="Back to Home"/>
+    </form>
+
+    <br>
+    <br>
+    Note: You will not be able to contribute to a story you've created or you've added to. 
+
   </body>
 </html>

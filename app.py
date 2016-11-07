@@ -55,6 +55,8 @@ def home():
 @app.route("/add/")
 def add():
     L = dbEditor.randomStory(session['username']);
+    if L == []:
+        return render_template("addfailure.html")
     return render_template("add.html", storyID = L[0], story = L[1], title = L[2])
 
 @app.route("/addInput/", methods = ["POST"])

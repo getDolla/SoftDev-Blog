@@ -188,7 +188,7 @@ def allStories(user):
     #Uses an insertion sort to sort by recency
     list=[]
     times=[]
-    i;
+    i
     for record in records:
         list.append(["",[]])
         times.append(0)
@@ -199,9 +199,10 @@ def allStories(user):
         ii=len(list)-1
         while ii>i:
             list[ii][0]=list[ii-1][0]
-            times[ii][1]=times[ii-1][1]
+            list[ii][1]=list[ii-1][1]
+            times[ii]=times[ii-1]
             ii-=1;
-        list[i][0]=[record[2]]
+        list[i][0]=record[2]
         list[i][1]=toList(record[0])
         times[i]=time
     db.commit()

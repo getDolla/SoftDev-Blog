@@ -3,10 +3,15 @@
   <head>
    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     <script type="text/javascript">
-        function countWords() {
+        function validWords() {
         s = document.getElementById( "story" ).value;
-        if( 5 > s.split(' ').length ) {
+        if( 7 > s.split(' ').length ) {
             alert( "Please enter more mords." );
+            return false;
+        }
+            
+        if( 2 <= s.split("'").length ) {
+            alert( "Apostrophes are not allowed!" );
             return false;
         }
             return true;
@@ -15,8 +20,6 @@
   </head>
   <body>
     <br>
-    <h1> Create a new Story! </h1>
-    <br>
       {% block content %}
     <form action="/createInput/" method="post" id="newBlog">
       Title:
@@ -24,17 +27,8 @@
       <br><br>
       <textarea rows="4" cols="50" name="story" form="newBlog" id="story">Enter your story here...</textarea>
       <br><br>
-      <input type="submit" value="Submit" id="submit" onclick="return countWords()">
+      <input type="submit" value="Submit" id="submit" onclick="return validWords()">
     </form>
       {% endblock %}
-
-      <form action="/home/">
-      <input type="submit" value="Back to Home"/>
-    </form>
-
-    <br>
-    <br>
-    Note: You will not be able to contribute to a story you've created or you've added to. 
-
   </body>
 </html>

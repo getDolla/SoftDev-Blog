@@ -6,7 +6,7 @@ body {
     font-family: Arial;
     text-align: center;
     position: relative;
-    background-image: url("http://eskipaper.com/images/paper-background-4.jpg");
+    background-image: url("http://s8.favim.com/orig/160108/adorable-amazing-awesome-background-Favim.com-3858249.jpg");
 }
 
 section {
@@ -15,6 +15,7 @@ section {
     margin: auto;
     padding: 10px 5px;
     border: 1px solid #CCCCCC;
+    background-color: white;
 }
 
 header { 

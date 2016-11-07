@@ -198,8 +198,8 @@ def allStories(user):
             i+=1
         ii=len(list)-1
         while ii>i:
-            list[ii]=list[ii-1]
-            times[ii]=times[ii-1]
+            list[ii][0]=list[ii-1][0]
+            times[ii][1]=times[ii-1][1]
             ii-=1;
         list[i][0]=[record[2]]
         list[i][1]=toList(record[0])

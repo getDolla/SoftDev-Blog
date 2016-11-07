@@ -139,7 +139,10 @@ def randomStoryId(user):
     db.commit()
     db.close()
     random.seed(time.time())
-    return list[random.randint(0,len(list)-1)]
+    if len(list)-1 <= 0:
+        return -1
+    else:
+        return list[random.randint(0,len(list)-1)]
 
 #randomStory(user)
 #Returns a random story that the user has not touched
@@ -150,14 +153,18 @@ def randomStory(user):
     db = sqlite3.connect("data/database.db")
     c = db.cursor()
     id = randomStoryId(user)
-    q = "SELECT last_submission, title FROM stories WHERE id = %d"%(id)
-    records = c.execute(q)
-    for record in records:
-        last_submission = record[0]
-        title = record[1]
-    db.commit()
-    db.close()
-    return id, last_submission, title
+    if id = -1:
+        return []
+    else:
+        q = "SELECT last_submission, title FROM stories WHERE id = %d"%(id)
+        records = c.execute(q)
+        for record in records:
+            last_submission = record[0]
+            title = record[1]
+        db.commit()
+        db.close()
+        return id, last_submission, title
+
 
 
 #allStories(user)

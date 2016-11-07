@@ -21,12 +21,12 @@
   <body>
     <br>
       {% block content %}
-    <br><br><center> <h1> Create a New Story! </h1> </center> <br>
+    <br><br><h1> Create a New Story! </h1><br>
     <form action="/createInput/" method="post" id="newBlog">
       Title:
       <input type="text" name="title">
       <br><br>
-      <textarea rows="4" cols="50" name="story" form="newBlog" id="story">Enter your story here...</textarea>
+      <textarea rows="4" cols="40" name="story" form="newBlog" id="story">Enter your story here...</textarea>
       <br><br>
       <input type="submit" value="Submit" id="submit" onclick="return validWords()">
     </form>

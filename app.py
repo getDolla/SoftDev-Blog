@@ -36,7 +36,7 @@ def authen():
         if val:
             return redirect(url_for('login', message = "Registration Successful"))
         else:
-            return redirect(url_for('login', message = "Registration Unsuccessful"))
+            return redirect(url_for('login', message = val))
     else:
         return redirect(url_for( 'root' ) )
 

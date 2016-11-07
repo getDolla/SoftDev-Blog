@@ -153,7 +153,7 @@ def randomStory(user):
     db = sqlite3.connect("data/database.db")
     c = db.cursor()
     id = randomStoryId(user)
-    if id = -1:
+    if id == -1:
         return []
     else:
         q = "SELECT last_submission, title FROM stories WHERE id = %d"%(id)

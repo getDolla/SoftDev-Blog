@@ -2,19 +2,33 @@ import sqlite3
 import hashlib
 from os import path, remove
 
-def authenticate( requestForm, userNames, passWords ):    
+checkerList = [" "]
+
+def authenticate( requestForm, userNames, passWords ):
+    for i in checkerList:
+        if( requestForm['user'].find(i) != -1 ):
+            return "Username Cannot Contain Any Whitespace"
+        if( requestForm['password'].find(i) != -1 ):
+            return "Password Cannot Contain Any Whitespace"
+        
     if( requestForm['user'] in userNames ):
         index = userNames.index(requestForm['user'])
         if passWords[index] == hashWord( requestForm['password'] ):
             return True
         else:
-            return "Bad Password"
+            return "Password Does Not Match"
     else:
-        return "Bad Username"
+        return "Username Not Found"
 
 def register( requestForm, userNames, passWords ):
+    for i in checkerList:
+        if( requestForm['user'].find(i) != -1 ):
+            return "Username Cannot Contain Any Whitespace"
+        if( requestForm['password'].find(i) != -1 ):
+            return "Password Cannot Contain Any Whitespace"
+
     if( requestForm['user'] in userNames ):
-        return False
+        return "Username Already Taken"
     else:
         #userNames.append( requestForm['user'] )
         #passWords.append( hashWord(requestForm['password']) )

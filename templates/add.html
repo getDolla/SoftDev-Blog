@@ -3,9 +3,8 @@
 {% block content %}
     <form action="/addInput/" method="post" id="updateBlog">
       <h2>{{ title }}</h2>
-      <br><br>
-        <section> <center> {{ story }} </center> </section> 
-     <br><br>
+        <section>{{ story }}</section> 
+     <br>
       <textarea rows="4" cols="50" name="story" form="updateBlog" id="story">Add to the story here...</textarea>
       <br><br>
       <input type="submit" value="Submit" id="submit" onclick="return countWords()">

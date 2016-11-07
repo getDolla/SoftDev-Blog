@@ -11,6 +11,9 @@ body {
 section {
     width: 377px;
     min-height: 60px;
+    margin: auto;
+    padding-top: 10px;
+	border: 1px solid #CCCCCC;
 }
 
 header { 
